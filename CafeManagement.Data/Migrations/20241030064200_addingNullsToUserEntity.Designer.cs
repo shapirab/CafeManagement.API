@@ -3,6 +3,7 @@ using CafeManagement.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CafeManagement.Data.Migrations
 {
     [DbContext(typeof(CafeManagementDbContext))]
-    partial class CafeManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241030064200_addingNullsToUserEntity")]
+    partial class addingNullsToUserEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

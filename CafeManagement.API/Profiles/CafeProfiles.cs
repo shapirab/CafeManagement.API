@@ -10,6 +10,12 @@ namespace CafeManagement.API.Profiles
         {
             CreateMap<User, UserEntity>();
             CreateMap<UserEntity, User>();
+
+            CreateMap<Product, ProductEntity>();
+            CreateMap<ProductEntity, Product>();
+
+            CreateMap<Category, CategoryEntity>();
+            CreateMap<CategoryEntity, Category>();
         }
     }
 }
