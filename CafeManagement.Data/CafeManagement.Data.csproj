@@ -9,8 +9,6 @@
   <ItemGroup>
     <Folder Include="DataModels\DTOs\" />
     <Folder Include="Services\Implementations\Mock\" />
-    <Folder Include="Services\Implementations\SQL\" />
-    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
