@@ -63,8 +63,6 @@ namespace CafeManagement.Data.Services.Implementations.SQL
             }
         }
 
-       
-
         public async Task<bool> IsCategoryExists(int id)
         {
             CategoryEntity? categoryEntity = await GetCategoryByIdAsync(id);
