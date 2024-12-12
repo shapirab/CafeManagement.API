@@ -16,6 +16,8 @@ namespace CafeManagement.API.Profiles
 
             CreateMap<Product, ProductEntity>();
             CreateMap<ProductEntity, Product>();
+            CreateMap<ProductDto, ProductEntity>();
+            CreateMap<ProductEntity, ProductDto>();
 
             CreateMap<Category, CategoryEntity>();
             CreateMap<CategoryEntity, Category>();

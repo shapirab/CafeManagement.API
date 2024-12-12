@@ -37,6 +37,7 @@ namespace CafeManagement.Data.Services.Implementations.SQL
             PaginationMetaData paginationMetaData = new PaginationMetaData(totalItemCount, pageSize, pageNumber);
 
             var collectionToReturn = await collection.OrderBy(category => category.Name)
+                .Include(category => category.Products)
                 .Skip(pageSize * (pageNumber - 1))
                 .Take(pageSize)
                 .ToListAsync();
