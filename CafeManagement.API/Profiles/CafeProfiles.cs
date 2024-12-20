@@ -26,6 +26,11 @@ namespace CafeManagement.API.Profiles
             CreateMap<CategoryDto, CategoryEntity>();
             CreateMap<CategoryEntity, CategoryDto>();
 
+            CreateMap<PurchaseOrder, PurchaseOrderEntity>();
+            CreateMap<PurchaseOrderEntity, PurchaseOrder>();
+            CreateMap<PurchaseOrderDto, PurchaseOrderEntity>();
+            CreateMap<PurchaseOrderEntity, PurchaseOrderDto>();
+
             
         }
     }
