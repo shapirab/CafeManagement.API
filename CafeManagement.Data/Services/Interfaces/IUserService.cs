@@ -14,9 +14,11 @@ namespace CafeManagement.Data.Services.Interfaces
         Task<(IEnumerable<UserEntity>, PaginationMetaData)> GetAllUsersAsync
             (Role? role, string? searchQuery, int pageNumber, int pageSize);
         Task<UserEntity?> GetUserByIdAsync (int id);
+        Task<UserEntity?> GetUserByUsernameAsync(string username);
         Task AddUserAsync (UserEntity user);
         Task DeleteUserAsync (int id);
         Task<bool> IsUserExists(int id);
+        Task<bool> IsUserExists(string username);
         Task<bool> SaveChangesAsync();
     }
 }

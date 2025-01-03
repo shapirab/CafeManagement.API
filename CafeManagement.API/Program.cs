@@ -16,6 +16,7 @@ builder.Services.AddDbContext<CafeManagementDbContext>(
         builder.Configuration["ConnectionStrings:CafeManagmentDB"]));
 
 builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

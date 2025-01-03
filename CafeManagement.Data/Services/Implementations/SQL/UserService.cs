@@ -70,9 +70,19 @@ namespace CafeManagement.Data.Services.Implementations.SQL
             return await db.Users.Where(user => user.Id == id).FirstOrDefaultAsync();
         }
 
+        public async Task<UserEntity?> GetUserByUsernameAsync(string username)
+        {
+            return await db.Users.Where(user => user.Username == username).FirstOrDefaultAsync();
+        }
+
         public async Task<bool> IsUserExists(int id)
         {
             return await GetUserByIdAsync(id) != null;
+        }
+
+        public async Task<bool> IsUserExists(string username)
+        {
+            return await GetUserByUsernameAsync(username) != null;
         }
 
         public async Task<bool> SaveChangesAsync()
