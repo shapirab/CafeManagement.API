@@ -3,6 +3,7 @@ using CafeManagement.Data.DataModels.DTOs;
 using CafeManagement.Data.DataModels.Entities;
 using CafeManagement.Data.DataModels.Models;
 using CafeManagement.Data.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
@@ -48,6 +49,7 @@ namespace CafeManagement.API.Controllers
             return Ok(mapper.Map<Product>(productEntity));
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost]
         public async Task<ActionResult<Product>> AddProduct(ProductDto product)
         {
@@ -69,6 +71,7 @@ namespace CafeManagement.API.Controllers
             }, productToReturn);
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("{id}")]
         public async Task<ActionResult<bool>> UpdateProduct(int id, ProductDto updatedProduct)
         {
@@ -81,6 +84,7 @@ namespace CafeManagement.API.Controllers
             return Ok(await productService.SaveChangesAsync());
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteProduct(int id)
         {

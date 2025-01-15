@@ -22,6 +22,7 @@ namespace CafeManagement.API.Extensions
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
+            services.AddScoped<ITokenService, TokenService>();
 
             return services;
         }

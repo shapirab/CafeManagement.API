@@ -1,4 +1,5 @@
-﻿using CafeManagement.Data.DataModels.DTOs;
+﻿using AutoMapper;
+using CafeManagement.Data.DataModels.DTOs;
 using CafeManagement.Data.DataModels.Entities;
 using CafeManagement.Data.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -14,11 +15,13 @@ namespace CafeManagement.API.Controllers
     {
         private readonly IUserService userService;
         private readonly ITokenService tokenService;
+        private readonly IMapper mapper;
 
-        public AccountController(IUserService userService, ITokenService tokenService)
+        public AccountController(IUserService userService, ITokenService tokenService, IMapper mapper)
         {
             this.userService = userService ?? throw new ArgumentNullException(nameof(userService));
             this.tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpPost("login")]
@@ -59,12 +62,17 @@ namespace CafeManagement.API.Controllers
             //salting the password so that it generates a different string in jwt every time
             using HMACSHA512 hmac = new HMACSHA512();
 
-            UserEntity userEntity = new UserEntity
-            {
-                Username = registerDto.Username.ToLower(),
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt = hmac.Key
-            };
+            UserEntity userEntity = mapper.Map<UserEntity>(registerDto);
+            userEntity.Username = registerDto.Username.ToLower();
+            userEntity.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            userEntity.PasswordSalt = hmac.Key;
+
+            //UserEntity userEntity = new UserEntity
+            //{
+            //    Username = registerDto.Username.ToLower(),
+            //    PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+            //    PasswordSalt = hmac.Key
+            //};
             await userService.AddUserAsync(userEntity);
             await userService.SaveChangesAsync();
             UserDto userDto = new UserDto

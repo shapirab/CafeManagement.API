@@ -19,6 +19,10 @@ namespace CafeManagement.API.Extensions
                         ValidateAudience = false
                     };
                 });
+            services.AddAuthorization(options => 
+            { 
+                options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("Role", "ADMIN")); 
+            });
             return services;
         }
     }
